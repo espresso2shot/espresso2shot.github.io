@@ -1,10 +1,27 @@
 ---
 layout: post
-title: You're up and running!
+title: Hello World!
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+코드를 집어 넣어볼까?
 
-![_config.yml]({{ site.baseurl }}/images/config.png)
+```scala
+def orderedMergeSort[T <: Ordered[T]] (xs: List[T]): List[T] = {
+  def merge(xs: List[T], ys: List[T]): List[T] =
+    (xs, ys) match {
+      case (Nil, _) => ys
+      case (_, Nil) => xs
+      case (x :: xs1, y :: ys1) =>
+        if (x < y) x :: merge(xs1, ys)
+        else y :: merge(xs, ys1)
+    }
+  val n = xs.length / 2
+  if (n == 0) xs
+  else {
+    val (ys, zs) = xs splitAt n
+    merge(orderedMergeSort(ys), orderedMergeSort(zs))
+  }
+}
 
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+
+```
