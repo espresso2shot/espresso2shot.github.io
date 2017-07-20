@@ -1,26 +1,26 @@
 ---
-layout: post
-title: 첫번째 포스팅
+layout: post 
+title: You're up and running! 
 ---
 
 코드를 한번 집어넣어볼까?
 
 ```scala
-			def orderedMergeSort[T <: Ordered[T]] (xs: List[T]): List[T] = {
-				def merge(xs: List[T], ys: List[T]): List[T] =
-					(xs, ys) match {
-						case (Nil, _) => ys
-						case (_, Nil) => xs
-						case (x :: xs1, y :: ys1) =>
-							if (x < y) x :: merge(xs1, ys)
-							else y :: merge(xs, ys1)
-					}
-				val n = xs.length / 2
-				if (n == 0) xs
-				else {
-					val (ys, zs) = xs splitAt n
-					merge(orderedMergeSort(ys), orderedMergeSort(zs))
-				}
+	def orderedMergeSort[T <: Ordered[T]] (xs: List[T]): List[T] = {
+		def merge(xs: List[T], ys: List[T]): List[T] =
+			(xs, ys) match {
+				case (Nil, _) => ys
+				case (_, Nil) => xs
+				case (x :: xs1, y :: ys1) =>
+					if (x < y) x :: merge(xs1, ys)
+					else y :: merge(xs, ys1)
 			}
+		val n = xs.length / 2
+		if (n == 0) xs
+		else {
+			val (ys, zs) = xs splitAt n
+			merge(orderedMergeSort(ys), orderedMergeSort(zs))
+		}
+	}
 
 ```
