@@ -23,7 +23,8 @@ class SlowAppendQueue[T](elems: List[T]) {
   def enqueue(x: T) = new SlowAppendQueue(elems ::: List(x))
 }
 ```
-- enqueue가 문제. 원소 개수에 비례한 시간이 걸림
+  - enqueue가 문제. 원소 개수에 비례한 시간이 걸림
+
 ```scala
 class SlowHeadQueue[T](smele: List[T]) {
   def head = smele.last
@@ -32,6 +33,7 @@ class SlowHeadQueue[T](smele: List[T]) {
 }
 ```
   - head, tail이 원소 개수에 비례한 시간이 걸림
+
 - 이 둘을 짬뽕시키면 해결될 듯!
 - 큐를 각각 leading과 trailing 두 리스트로 구현한다.
 - leading 리스트는 앞으로부터 원소를 저장하고, trailing 리스트는 큐의 원소를 뒤로부터 거꾸로 저장
