@@ -53,7 +53,7 @@ class Queue[T] private (
   - 이 생성자는 오직 클래스 자신과 동반 객체에서만 접근 가능
   - 클라이언트는 어떻게 객체 생성? 보조 생성자를 추가하거나 팩토리 메소드를 추가해서 방법을 제공할 수 있음
 - 대안: 비공개 클래스
-  - 더 급진적으로 클래스 자체를 감추고, 클래스에 대한 공개 인터페이스만을 제공하는 트레이트를 외부로 노출하는 방법이 있음
+  - 더 급진적으로 클래스 자체를 감추고, 클래스에 대한 공개 인터페이스만을 제공하는 트레이트를 외부로 노출하는 방법이 있음
 ```scala
   trait Queue[T] {
     def head: T
@@ -83,16 +83,17 @@ class Queue[T] private (
 - Queue를 제네릭 트레이트라 부를 수도 있음
 - 제네릭이라는 말은 여러 타입을 고려해 포괄적으로 작성한 클래스나 트레이트를 가지고 여러 구체적인 타입을 정의할 수 있다는 뜻
 - 공변적
-  - S가 T의 서브타입이라면 Queue[S]를 Queue[T]의 서브타입으로 간주한다면 공변적
-  - Queue[String]을 Queue[AnyRef]를 필요로 하는 곳에 넘길 수 있다는 뜻
+  - S가 T의 서브타입이라면 Queue[S]를 Queue[T]의 서브타입으로 간주한다면 공변적
+  - Queue[String]을 Queue[AnyRef]를 필요로 하는 곳에 넘길 수 있다는 뜻
 - 스칼라에서는 제네릭 타입은 기본적으로 무공변
-  - Queue[String]을 Queue[AnyRef] 대신 사용할 수 없다.
+  - Queue[String]을 Queue[AnyRef] 대신 사용할 수 없다.
 - trait Queue[+T]{...} 처럼 타입 앞에 + 를 붙여주면 서브타입 관계가 그 파라미터에 대해 공변적이라는 뜻
 - -를 붙이면 반공변
-  - S가 T의 서브타입이라면 Queue[T]를 Queue[S]의 서브타입으로 간주
+  - S가 T의 서브타입이라면 Queue[T]를 Queue[S]의 서브타입으로 간주
 - 어떤 파라미터의 공변, 반공변, 무공변 여부를 파라미터의 *변성*이라고 부른다.
 - +, - 기호는 *변성 표기*라 부른다.
-- 공변성으로 인해 타입 건전성이 위배되는 경우
+- 공변성으로 인해 타입 건전성이 위배되는 경우  
+- 
 ```scala
 class Cell[T](init: T) {
   private[this] var current = init
@@ -100,13 +101,13 @@ class Cell[T](init: T) {
   def set(x: T) { current = x }
 }
 
-//실제로는 통과할 수 없듣 코드
+//실제로는 통과할 수 없 코드
 val c1 = new Cell[String]("abc")
 val c2: Cell[Any] = c1
 c2.set(1)
 val s: String = c1.get 
 ```
-  - 마지막 줄에서 타입 건전성을 위배!..
+  - 마지막 줄에서 타입 건전성을 위배!
 - String Cell 
 
 
