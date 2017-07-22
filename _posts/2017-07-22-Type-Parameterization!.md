@@ -23,7 +23,7 @@ class SlowAppendQueue[T](elems: List[T]) {
   def enqueue(x: T) = new SlowAppendQueue(elems ::: List(x))
 }
 ```
-  - enqueue가 문제. 원소 개수에 비례한 시간이 걸림
+- enqueue가 문제. 원소 개수에 비례한 시간이 걸림
   
 ```scala
 class SlowHeadQueue[T](smele: List[T]) {
@@ -32,8 +32,7 @@ class SlowHeadQueue[T](smele: List[T]) {
   def enqueue(x: T) = new SlowHeadQueue(x :: smele)
 }
 ```
-  - head, tail이 원소 개수에 비례한 시간이 걸림
-  
+- head, tail이 원소 개수에 비례한 시간이 걸림
 - 이 둘을 짬뽕시키면 해결될 듯!
 - 큐를 각각 leading과 trailing 두 리스트로 구현한다.
 - leading 리스트는 앞으로부터 원소를 저장하고, trailing 리스트는 큐의 원소를 뒤로부터 거꾸로 저장
@@ -44,16 +43,15 @@ class SlowHeadQueue[T](smele: List[T]) {
 - 비공개 생성자와 팩토리 메소드
   - 스칼라에서는 명시적으로 주 생성자를 정의하지 않음
   - 클래스 파라미터와 몸체에 의해 암시적으로 주 생성자가 만들어짐
-  - 클래스의 파라미터 목록 바로 앞에 private 수식자를 붙여서 주 생성자를 감출 수 있음
-  - 
+  - 클래스의 파라미터 목록 바로 앞에 private 수식자를 붙여서 주 생성자를 감출 수 있음 
 ```scala
 class Queue[T] private (
   private val leading: List[T],
   private val trailing: List[T]
 )
 ```
-  - 이 생성자는 오직 클래스 자신과 동반 객체에서만 접근 가능
-  - 클라이언트는 어떻게 객체 생성? 보조 생성자를 추가하거나 팩토리 메소드를 추가해서 방법을 제공할 수 있음
+  - 이 생성자는 오직 클래스 자신과 동반 객체에서만 접근 가능
+  - 클라이언트는 어떻게 객체 생성? 보조 생성자를 추가하거나 팩토리 메소드를 추가해서 방법을 제공할 수 있음
 
 ```scala
 def orderedMergeSort[T <: Ordered[T]] (xs: List[T]): List[T] = {
