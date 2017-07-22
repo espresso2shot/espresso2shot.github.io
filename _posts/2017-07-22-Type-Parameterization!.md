@@ -93,7 +93,6 @@ class Queue[T] private (
 - 어떤 파라미터의 공변, 반공변, 무공변 여부를 파라미터의 *변성*이라고 부른다.
 - +, - 기호는 *변성 표기*라 부른다.
 - 공변성으로 인해 타입 건전성이 위배되는 경우  
-- 
 ```scala
 class Cell[T](init: T) {
   private[this] var current = init
